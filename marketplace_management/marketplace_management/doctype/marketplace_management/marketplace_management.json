@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-02-28 21:23:51.317669",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "shopee_app_information_section",
+  "active_shopee",
+  "partner_id",
+  "partner_key",
+  "lazada_app_information_section",
+  "active_lazada",
+  "client_id",
+  "client_secret"
+ ],
+ "fields": [
+  {
+   "fieldname": "shopee_app_information_section",
+   "fieldtype": "Section Break",
+   "label": "Shopee App Information"
+  },
+  {
+   "fieldname": "partner_id",
+   "fieldtype": "Data",
+   "label": "Partner ID"
+  },
+  {
+   "fieldname": "partner_key",
+   "fieldtype": "Data",
+   "label": "Partner Key"
+  },
+  {
+   "fieldname": "lazada_app_information_section",
+   "fieldtype": "Section Break",
+   "label": "Lazada App Information"
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client ID"
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Data",
+   "label": "Client Secret"
+  },
+  {
+   "default": "0",
+   "fieldname": "active_shopee",
+   "fieldtype": "Check",
+   "label": "Active Shopee"
+  },
+  {
+   "default": "0",
+   "fieldname": "active_lazada",
+   "fieldtype": "Check",
+   "label": "Active Lazada"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-02-28 21:31:37.021488",
+ "modified_by": "Administrator",
+ "module": "Marketplace Management",
+ "name": "Marketplace Management",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
