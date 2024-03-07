@@ -15,6 +15,7 @@ import json
 import hmac
 import hashlib
 import time
+from lazop_sdk import LazopClient, LazopRequest
 
 
 class CreateMarketplaceClient:
@@ -70,6 +71,7 @@ def redirect_to_auth_lazada(client_site):
     app_details = frappe.get_doc('Marketplace Management') 
     if( app_details.client_id !='' and app_details.client_secret != '' and app_details.active_lazada ):
             connect = CreateMarketplaceClient()	
+            return 'fff'
             url = connect.start_connecting_lazada ( app_details.client_id,app_details.client_secret,client_site)
             if( url ):
                 print (f"Redirecting to auth from function {url}")
@@ -78,9 +80,29 @@ def redirect_to_auth_lazada(client_site):
                 exit() 	
     return 
 
+
+
 @frappe.whitelist(allow_guest=True)
-def code_to_token_auth_shopee(code,shop_id):
-    
+def code_to_token_auth_lazada(code):  
+    app_details = frappe.get_doc('Marketplace Management') 
+
+
+    app_key = app_details.client_id
+    app_secret = app_details.client_secret
+    client = LazopClient("https://api.lazada.com/rest",app_key, app_secret)
+    request = LazopRequest('/auth/token/create')
+    request.add_api_param('code', code)
+    response = client.execute(request)
+
+    y = json.dumps(response)
+
+    return y
+
+
+
+
+@frappe.whitelist(allow_guest=True)
+def code_to_token_auth_shopee(code,shop_id):   
     if(code !='' and shop_id != ''):
         app_details = frappe.get_doc('Marketplace Management') 
         return get_token_shop_level(code,  app_details.partner_id, app_details.partner_key, shop_id)
