@@ -1,3 +1,4 @@
+import frappe
 import boto3
 
 
@@ -12,7 +13,6 @@ def poll_marketplace_events(
         region_name=region_name,
     )
 
-    # Continuously pull messages from the SQS queue
     while True:
         response = sqs.receive_message(
             QueueUrl=queue_url,
@@ -22,10 +22,12 @@ def poll_marketplace_events(
 
         if "Messages" in response:
             for message in response["Messages"]:
-                # Process the message
                 print("Received message:", message["Body"])
+                
+                event_payload = message["Body"]
+                # TODO: Process the event_payload
 
-                # Delete the message from the queue
+                # Important: Delete the message from the queue after message has been processed
                 sqs.delete_message(
                     QueueUrl=queue_url, ReceiptHandle=message["ReceiptHandle"]
                 )
