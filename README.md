@@ -14,7 +14,30 @@ Here's a simple diagram to visualize the infrastructure:
 
 ## Getting Started
 
-To start polling the marketplace, you need to run the following command:
+To start polling the marketplace, you need to complete the following steps:
+
+### 1. configure custom queue
+
+add the following to your `site_config.json` file:
+
+```json
+"workers": {
+        "marketplaceEventsQueue": {
+            "timeout": "3650d",
+            "background_workers": 1
+        }
+    }
+```
+
+### 2. configure the marketplace-polling worker
+
+You need to run the following command to `Procfile`:
+
+```bash
+marketplaceEventsWorker: bench worker --queue marketplaceEventsQueue>> logs/marketplaceEventsWorker.log 2>> logs/marketplaceEventsWorker.error.log
+```
+
+### 3. start marketplace-polling worker
 
 ```bash
 bench marketplace-polling on \
