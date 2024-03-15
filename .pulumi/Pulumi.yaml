@@ -1,0 +1,7 @@
+name: marketplace_management
+runtime: nodejs
+description: A queue system for marketplace integration
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-typescript

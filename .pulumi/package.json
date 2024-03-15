@@ -1,0 +1,16 @@
+{
+    "name": "marketplace_management",
+    "main": "index.ts",
+    "scripts": {
+        "deploy": "cp ./functions/package.json  ./temp_node_modules/nodejs && cd ./temp_node_modules/nodejs && npm i && cd ../ && pulumi up"
+    },
+    "devDependencies": {
+        "@types/node": "^18"
+    },
+    "dependencies": {
+        "@pulumi/archive": "^0.0.4",
+        "@pulumi/aws": "^6.0.0",
+        "@pulumi/awsx": "^2.0.2",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}

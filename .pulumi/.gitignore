@@ -1,0 +1,5 @@
+/bin/
+/node_modules/
+*.zip
+temp_node_modules
+venv
