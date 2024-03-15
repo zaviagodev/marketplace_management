@@ -1,13 +1,11 @@
 [project]
 name = "marketplace_management"
-authors = [
-    { name = "zaviago", email = "nabeel@zaviago.com"}
-]
+authors = [{ name = "zaviago", email = "nabeel@zaviago.com" }]
 description = "Marketplace managment "
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
-dependencies = ["lazop-sdk"]
+dependencies = ["lazop-sdk", "boto3"]
 
 [build-system]
 requires = ["flit_core >=3.4,<4"]
