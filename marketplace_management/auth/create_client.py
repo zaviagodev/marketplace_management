@@ -15,8 +15,7 @@ import json
 import hmac
 import hashlib
 import time
-from lazop_sdk import LazopClient, LazopRequest
-
+from marketplace_management.auth.base import *
 
 class CreateMarketplaceClient:
 
@@ -71,7 +70,6 @@ def redirect_to_auth_lazada(client_site):
     app_details = frappe.get_doc('Marketplace Management') 
     if( app_details.client_id !='' and app_details.client_secret != '' and app_details.active_lazada ):
             connect = CreateMarketplaceClient()	
-            return 'fff'
             url = connect.start_connecting_lazada ( app_details.client_id,app_details.client_secret,client_site)
             if( url ):
                 print (f"Redirecting to auth from function {url}")
@@ -85,32 +83,30 @@ def redirect_to_auth_lazada(client_site):
 @frappe.whitelist(allow_guest=True)
 def code_to_token_auth_lazada(code):  
     app_details = frappe.get_doc('Marketplace Management') 
-
-
     app_key = app_details.client_id
     app_secret = app_details.client_secret
-    client = LazopClient("https://api.lazada.com/rest",app_key, app_secret)
+
+
+    client = LazopClient('https://api.lazada.co.th/rest', '${app_key}', '${app_secret}')
     request = LazopRequest('/auth/token/create')
     request.add_api_param('code', code)
     response = client.execute(request)
 
-    y = json.dumps(response)
-
-    return y
-
+    return response.body
 
 
 
 @frappe.whitelist(allow_guest=True)
-def code_to_token_auth_shopee(code,shop_id):   
+def code_to_token_auth_shopee(code,shop_id,site_name):   
     if(code !='' and shop_id != ''):
         app_details = frappe.get_doc('Marketplace Management') 
-        return get_token_shop_level(code,  app_details.partner_id, app_details.partner_key, shop_id)
+        return get_token_shop_level(code,  app_details.partner_id, app_details.partner_key, shop_id,site_name)
 
-def get_token_shop_level(code, partner_id, tmp_partner_key, shop_id):
+def get_token_shop_level(code, partner_id, tmp_partner_key, shop_id,site_name):
     partner_id = int(partner_id)
     shop_id = int(shop_id)
     timest = int(time.time())
+    
     host = "https://partner.shopeemobile.com"
     path = "/api/v2/auth/token/get"
     body = {"code": code, "shop_id": shop_id, "partner_id": partner_id}
@@ -125,4 +121,17 @@ def get_token_shop_level(code, partner_id, tmp_partner_key, shop_id):
     ret = json.loads(resp.content)
     access_token = ret.get("access_token")
     new_refresh_token = ret.get("refresh_token")
+    
+    if access_token:
+        existing_record = frappe.get_doc("Marketplace Accounts", {"shop_id": shop_id})
+        if existing_record:
+            existing_record.website_url = site_name
+            existing_record.save(ignore_permissions=True)
+        else:
+            contact = frappe.new_doc("Marketplace Accounts")
+            contact.shop_id = shop_id
+            contact.website_url = site_name
+            contact.marketplace = "Shopee"
+            contact.insert(ignore_permissions=True)
+
     return {"access_token": access_token, "new_refresh_token": new_refresh_token}
