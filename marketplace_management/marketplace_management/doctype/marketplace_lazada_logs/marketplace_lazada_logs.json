@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-03-13 22:09:50.366431",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "buyer_id",
+  "order_status",
+  "trade_order_id",
+  "trade_order_line_id",
+  "seller_id",
+  "timestamp",
+  "log_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "log_details",
+   "fieldtype": "JSON",
+   "label": "Log Details"
+  },
+  {
+   "fieldname": "buyer_id",
+   "fieldtype": "Data",
+   "label": "Buyer ID"
+  },
+  {
+   "fieldname": "order_status",
+   "fieldtype": "Data",
+   "label": "Order Status"
+  },
+  {
+   "fieldname": "trade_order_id",
+   "fieldtype": "Data",
+   "label": "Trade Order ID"
+  },
+  {
+   "fieldname": "trade_order_line_id",
+   "fieldtype": "Data",
+   "label": "trade_order_line_id"
+  },
+  {
+   "fieldname": "seller_id",
+   "fieldtype": "Data",
+   "label": "Seller ID"
+  },
+  {
+   "fieldname": "timestamp",
+   "fieldtype": "Data",
+   "label": "Timestamp"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-14 15:37:34.519511",
+ "modified_by": "Administrator",
+ "module": "Marketplace Management",
+ "name": "Marketplace Lazada Logs",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

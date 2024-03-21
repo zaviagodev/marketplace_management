@@ -1,39 +1,54 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2024-02-29 12:20:42.874154",
+ "creation": "2024-03-08 03:35:10.100268",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "order_id",
+  "status",
   "shop_id",
-  "website_url",
-  "marketplace"
+  "timestamp",
+  "website_response"
  ],
  "fields": [
+  {
+   "fieldname": "order_id",
+   "fieldtype": "Data",
+   "label": "Order Id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
   {
    "fieldname": "shop_id",
    "fieldtype": "Data",
    "label": "Shop Id",
-   "unique": 1
+   "read_only": 1
   },
   {
-   "fieldname": "website_url",
-   "fieldtype": "Data",
-   "label": "Website Url"
+   "fieldname": "timestamp",
+   "fieldtype": "Int",
+   "label": "Timestamp",
+   "read_only": 1
   },
   {
-   "fieldname": "marketplace",
-   "fieldtype": "Select",
-   "label": "Marketplace",
-   "options": "Shopee\nLazada"
+   "fieldname": "website_response",
+   "fieldtype": "JSON",
+   "label": "Website Response",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-08 03:36:47.029072",
+ "modified": "2024-03-08 04:24:19.880298",
  "modified_by": "Administrator",
  "module": "Marketplace Management",
- "name": "Marketplace Accounts",
+ "name": "Marketplace Shopee Logs",
  "owner": "Administrator",
  "permissions": [
   {
