@@ -23,9 +23,15 @@ def poll_marketplace_events(
         if "Messages" in response:
             for message in response["Messages"]:
                 print("Received message:", message["Body"])
-                
+
                 event_payload = message["Body"]
-                # TODO: Process the event_payload
+
+                try:
+                    # TODO: Process the event_payload
+                    print("Processing message:", event_payload)
+                except Exception as e:
+                    print(f"Error processing message: {e}")
+                    frappe.log_error(frappe.get_traceback(), "poll_marketplace_events")
 
                 # Important: Delete the message from the queue after message has been processed
                 sqs.delete_message(

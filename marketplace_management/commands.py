@@ -20,6 +20,7 @@ from marketplace_management.poll_marketplace_events import poll_marketplace_even
 def marketplace_polling(context, site, queue_url, aws_access_key_id, aws_secret_access_key, region, queue, state):
     site = site or get_site(context)
     frappe.init(site=site)
+    frappe.connect()
     if state == "on":
         # validate
         missing_args = []
