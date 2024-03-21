@@ -11,6 +11,7 @@
         "@pulumi/archive": "^0.0.4",
         "@pulumi/aws": "^6.0.0",
         "@pulumi/awsx": "^2.0.2",
-        "@pulumi/pulumi": "^3.0.0"
+        "@pulumi/pulumi": "^3.0.0",
+        "dotenv": "^16.3.1"
     }
 }

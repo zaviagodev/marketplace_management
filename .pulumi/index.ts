@@ -1,6 +1,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import * as archive from "@pulumi/archive";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 // package the code
 const code = archive
@@ -76,9 +78,12 @@ const marketplaceEventsReceverFunction = new aws.lambda.Function(
     code: new pulumi.asset.FileArchive(code),
     layers: [nodeModulesLayer.arn],
     timeout: 60,
+    publish: true,
     environment: {
       variables: {
         QUEUE_URL: marketplaceEventsQueue.url,
+        PARTNER_KEY: process.env.PARTNER_KEY || "",
+        RECEVER_FUNCION_URL: process.env.RECEVER_FUNCION_URL || "",
       },
     },
   }
