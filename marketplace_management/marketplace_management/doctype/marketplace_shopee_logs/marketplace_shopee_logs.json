@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{order_id}-{status}",
  "creation": "2024-03-08 03:35:10.100268",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -9,46 +10,42 @@
   "status",
   "shop_id",
   "timestamp",
-  "website_response"
+  "payload"
  ],
  "fields": [
   {
    "fieldname": "order_id",
    "fieldtype": "Data",
-   "label": "Order Id",
-   "read_only": 1
+   "label": "Order Id"
   },
   {
    "fieldname": "status",
    "fieldtype": "Data",
-   "label": "Status",
-   "read_only": 1
+   "label": "Status"
   },
   {
    "fieldname": "shop_id",
    "fieldtype": "Data",
-   "label": "Shop Id",
-   "read_only": 1
+   "label": "Shop Id"
   },
   {
    "fieldname": "timestamp",
    "fieldtype": "Int",
-   "label": "Timestamp",
-   "read_only": 1
+   "label": "Timestamp"
   },
   {
-   "fieldname": "website_response",
+   "fieldname": "payload",
    "fieldtype": "JSON",
-   "label": "Website Response",
-   "read_only": 1
+   "label": "payload"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-08 04:24:19.880298",
+ "modified": "2024-03-27 12:40:03.939957",
  "modified_by": "Administrator",
  "module": "Marketplace Management",
  "name": "Marketplace Shopee Logs",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

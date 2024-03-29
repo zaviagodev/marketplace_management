@@ -36,7 +36,6 @@ def marketplace_polling(context, site, queue_url, aws_access_key_id, aws_secret_
         if missing_args:
             click.echo(f"Missing required arguments: {', '.join(missing_args)}")
             return
-
         # start job
         frappe.enqueue(
             poll_marketplace_events,

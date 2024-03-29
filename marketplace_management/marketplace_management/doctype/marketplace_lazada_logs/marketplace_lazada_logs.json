@@ -1,6 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "format:{trade_order_id}-{order_status}",
  "creation": "2024-03-13 22:09:50.366431",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -52,10 +52,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-14 15:37:34.519511",
+ "modified": "2024-03-28 14:34:17.724570",
  "modified_by": "Administrator",
  "module": "Marketplace Management",
  "name": "Marketplace Lazada Logs",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
