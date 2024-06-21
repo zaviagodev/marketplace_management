@@ -44,7 +44,9 @@ exports.handler = async function (event) {
         QueueUrl: queueUrl,
         MessageBody: messageBody,
         MessageGroupId: 'default', // MessageGroupId is required for FIFO queues
-    }).promise();
+    }).promise().then((data) => {
+        console.log(`Message (${data.MessageId}) sent to the queue: ${queueUrl}`);
+    });
 
     return { statusCode: 200, body: 'Event processed.' };
 };
